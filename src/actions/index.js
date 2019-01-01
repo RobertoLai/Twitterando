@@ -18,12 +18,11 @@ export function createTask(title, description) {
 export function createTaskSucceeded(tasks) {
   return {
     type: "CREATE_TASK_SUCCEEDED",
-    payload: tasks
+    payload:  tasks 
   };
 }
 
 export function editTask(id, params = {}) {
-
   return (dispatch, getState) => {
     const task = getTaskById(getState().tasks, id);
     const updatedTask = Object.assign({}, task, params);
