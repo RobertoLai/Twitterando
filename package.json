@@ -1,18 +1,27 @@
 {
   "name": "twitterando",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.11",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.2",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.8.0",
+    "redux-devtools-extension": "^2.13.7"
+  },
+  "private": true,
   "eslintConfig": {
     "extends": "react-app"
   },
