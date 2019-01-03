@@ -64,6 +64,7 @@ class TasksPage extends React.Component {
             + New task
           </button>
         </div>
+
         {this.state.showNewCardForm && (
           <form className="task-list-form" onSubmit={this.onCreateTask}>
             <input

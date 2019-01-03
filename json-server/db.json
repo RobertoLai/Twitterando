@@ -7,7 +7,7 @@
       "title": "Learn Redux"
     },
     {
-      "status": "Unstarted",
+      "status": "In Progress",
       "description": "Math programming",
       "title": "Learn Python",
       "id": 3
@@ -16,7 +16,7 @@
       "title": "Learn Haskell",
       "description": "Functional programming",
       "id": 2,
-      "status": "Unstarted"
+      "status": "Completed"
     },
     {
       "title": "Learn Ramda",
@@ -27,8 +27,68 @@
     {
       "title": "Learn Rx",
       "description": "Observables",
-      "status": "In Progress",
+      "status": "Completed",
       "id": 5
+    },
+    {
+      "title": "aaaa",
+      "description": "aaaaa",
+      "status": "Completed",
+      "id": 10
+    },
+    {
+      "title": "qqqq",
+      "description": "qqqqqq",
+      "status": "Completed",
+      "id": 11
+    },
+    {
+      "title": "qqqqq",
+      "description": "qqqqq",
+      "status": "Unstarted",
+      "id": 12
+    },
+    {
+      "title": "www",
+      "description": "wwwww",
+      "status": "Unstarted",
+      "id": 13
+    },
+    {
+      "title": "qqqq",
+      "description": "sssss",
+      "status": "Unstarted",
+      "id": 14
+    },
+    {
+      "title": "ssss",
+      "description": "sssss",
+      "status": "Unstarted",
+      "id": 15
+    },
+    {
+      "title": "aSA",
+      "description": "aSAS",
+      "status": "Unstarted",
+      "id": 16
+    },
+    {
+      "title": "SASA",
+      "description": "ASAS",
+      "status": "Unstarted",
+      "id": 17
+    },
+    {
+      "title": "qqqqqqqqqqq",
+      "description": "aaaaaaaaaaaaa",
+      "status": "Unstarted",
+      "id": 18
+    },
+    {
+      "title": "ggg",
+      "description": "jjj",
+      "status": "Unstarted",
+      "id": 19
     }
   ]
 }

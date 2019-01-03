@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { tasksReducer } from "./reducers";
+import { tasksReducer, projectsReducer } from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import {
@@ -15,7 +15,8 @@ import thunk from "redux-thunk";
 
 const rootReducer = (state = {}, action) => {
   return {
-    tasks: tasksReducer(state.tasks, action)
+    tasks: tasksReducer(state.tasks, action),
+    projects: projectsReducer(state.projects, action)
   };
 };
 const store = createStore(

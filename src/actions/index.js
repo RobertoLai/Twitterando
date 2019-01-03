@@ -1,20 +1,27 @@
 import * as api from "../api";
 
-// let _id = 1;
-// export function uniqueId() {
-//   return _id++;
-// }
-
 export function createTask(title, description) {
   return dispatch => {
+    dispatch(createTaskStarted());
+
     api
       .createTask({ title, description, status: "Unstarted" })
-      .then(resp => dispatch(createTaskSucceeded(resp.data)))
+      .then(resp => {
+        setTimeout(() => dispatch(createTaskSucceeded(resp.data)), 400);
+        // throw new Error("createTask: error while creating the new task");
+      })
       .catch(err => {
-        console.log("ERROR createTask", err.message);
+        dispatch(createTaskFailed(err.message));
       });
   };
 }
+
+export function createTaskStarted() {
+  return {
+    type: "CREATE_TASK_STARTED"
+  };
+}
+
 export function createTaskSucceeded(tasks) {
   return {
     type: "CREATE_TASK_SUCCEEDED",
@@ -22,19 +29,45 @@ export function createTaskSucceeded(tasks) {
   };
 }
 
+export function createTaskFailed(error) {
+  return {
+    type: "CREATE_TASK_FAILED",
+    payload: { error }
+  };
+}
+
 export function editTask(id, params = {}) {
   return (dispatch, getState) => {
     const task = getTaskById(getState().tasks.tasks, id);
     const updatedTask = Object.assign({}, task, params);
+    dispatch(editTaskStarted());
     api
       .editTask(id, updatedTask)
-      .then(resp => dispatch(edit_task_succeeded(id, resp.data)));
+      .then(resp => {
+         setTimeout(() => dispatch(edit_task_succeeded(id, resp.data)), 400);
+        //throw new Error("editTask: An error occurred while editing task!");
+      })
+      .catch(err => {
+        dispatch(editTaskFailed(err.message));
+      });
+  };
+}
+
+export function editTaskStarted() {
+  return {
+    type: "EDIT_TASK_STARTED"
   };
 }
 export function edit_task_succeeded(id, params = {}) {
   return {
     type: "EDIT_TASK_SUCCEEDED",
     payload: Object.assign({}, { id }, params)
+  };
+}
+export function editTaskFailed(error) {
+  return {
+    type: "EDIT_TASK_FAILED",
+    payload: { error }
   };
 }
 
