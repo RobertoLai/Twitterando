@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import TasksPage from "./components/TasksPage";
+import FlashMessage from "./components/FlashMessage";
 import { createTask, editTask, fetchTasks } from "./actions";
 import { connect } from "react-redux";
 
 class App extends Component {
-
   componentDidMount() {
     this.props.dispatch(fetchTasks());
   }
@@ -24,19 +24,25 @@ class App extends Component {
           tasks={this.props.tasks}
           onCreateTask={this.onCreateTask}
           onUpdateTaskStatus={this.onUpdateTaskStatus}
+          isLoading={this.props.isLoading}
+          error={this.props.error}
         />
       </div>
     );
   }
 }
 
+
 function mapStateToProps(state) {
-  return { tasks: state.tasks };
+  const { tasks, isLoading, error } = state.tasks;
+  return { tasks, isLoading, error };
 }
 
-// function mapStateToProps(state) {
-//   const { tasks } = state.tasks;
-//   return tasks ;
-// }
-
 export default connect(mapStateToProps)(App);
+
+// function mapStateToProps(state) {
+//   return {
+//     tasks: state.tasks.tasks,
+//     isLoading: state.tasks.isLoading
+//   };
+// }

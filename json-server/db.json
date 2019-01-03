@@ -7,7 +7,7 @@
       "title": "Learn Redux"
     },
     {
-      "status": "In Progress",
+      "status": "Unstarted",
       "description": "Math programming",
       "title": "Learn Python",
       "id": 3
@@ -16,13 +16,19 @@
       "title": "Learn Haskell",
       "description": "Functional programming",
       "id": 2,
-      "status": "In Progress"
+      "status": "Unstarted"
     },
     {
       "title": "Learn Ramda",
       "description": "Functional Javascript in JS like Haskell",
-      "status": "Unstarted",
+      "status": "Completed",
       "id": 4
+    },
+    {
+      "title": "Learn Rx",
+      "description": "Observables",
+      "status": "In Progress",
+      "id": 5
     }
   ]
 }

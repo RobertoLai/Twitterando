@@ -18,13 +18,13 @@ export function createTask(title, description) {
 export function createTaskSucceeded(tasks) {
   return {
     type: "CREATE_TASK_SUCCEEDED",
-    payload:  tasks 
+    payload: tasks
   };
 }
 
 export function editTask(id, params = {}) {
   return (dispatch, getState) => {
-    const task = getTaskById(getState().tasks, id);
+    const task = getTaskById(getState().tasks.tasks, id);
     const updatedTask = Object.assign({}, task, params);
     api
       .editTask(id, updatedTask)
@@ -42,20 +42,34 @@ function getTaskById(tasks, id) {
   return tasks.find(task => task.id === id);
 }
 
+export function fetchTasksStarted() {
+  return {
+    type: "FETCH_TASKS_STARTED"
+  };
+}
 export function fetchTasks() {
-  return dispatch =>
+  return dispatch => {
+    dispatch(fetchTasksStarted());
     api
       .fetchTasks()
       .then(resp => {
-        dispatch(fetchTasksSucceeded(resp.data));
+        setTimeout(() => dispatch(fetchTasksSucceeded(resp.data)), 600);
+        // throw new Error("fetchTasks: An error occurred while fetching!");
       })
       .catch(err => {
-        console.log(err.message);
+        dispatch(fetchTasksFailed(err.message));
       });
+  };
 }
 export function fetchTasksSucceeded(tasks) {
   return {
     type: "FETCH_TASKS_SUCCEEDED",
     payload: { tasks }
+  };
+}
+export function fetchTasksFailed(error) {
+  return {
+    type: "FETCH_TASKS_FAILED",
+    payload: { error }
   };
 }

@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import tasks from "./reducers";
+import { tasksReducer } from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import {
@@ -13,7 +13,15 @@ import {
 } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-const store = createStore(tasks, composeWithDevTools(applyMiddleware(thunk)));
+const rootReducer = (state = {}, action) => {
+  return {
+    tasks: tasksReducer(state.tasks, action)
+  };
+};
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <Provider store={store}>

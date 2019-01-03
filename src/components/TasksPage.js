@@ -1,5 +1,6 @@
 import React from "react";
 import TaskList from "./TaskList";
+import FlashMessage from "./FlashMessage";
 import { TASK_STATUSES } from "../constants";
 
 class TasksPage extends React.Component {
@@ -39,6 +40,7 @@ class TasksPage extends React.Component {
 
   renderTaskList() {
     const { tasks } = this.props;
+
     return TASK_STATUSES.map(status => {
       const statusTasks = tasks.filter(task => task.status === status);
       return (
@@ -53,7 +55,9 @@ class TasksPage extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.isLoading ? (
+      <div className="tasks-loading">Loading....</div>
+    ) : (
       <div className="task-list">
         <div className="task-list-header">
           <button className="button button-default" onClick={this.toggleForm}>
@@ -82,7 +86,13 @@ class TasksPage extends React.Component {
           </form>
         )}
 
-        <div className="task-lists">{this.renderTaskList()}</div>
+        <div className="task-lists">
+          {this.props.error !== null ? (
+            <FlashMessage message={this.props.error} />
+          ) : (
+            this.renderTaskList()
+          )}
+        </div>
       </div>
     );
   }
