@@ -16,7 +16,7 @@
       "title": "Learn Haskell",
       "description": "Functional programming",
       "id": 2,
-      "status": "Unstarted"
+      "status": "In Progress"
     },
     {
       "title": "Learn Ramda",
@@ -27,8 +27,20 @@
     {
       "title": "Learn Rx",
       "description": "Observables",
-      "status": "Unstarted",
+      "status": "In Progress",
       "id": 5
+    },
+    {
+      "title": "Learn Jest",
+      "description": "Testing JS library",
+      "status": "Completed",
+      "id": 6
+    },
+    {
+      "title": "qqqqq",
+      "description": "qqqqq",
+      "status": "Unstarted",
+      "id": 7
     }
   ]
 }

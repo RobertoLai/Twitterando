@@ -22,10 +22,19 @@ export function createTaskStarted() {
   };
 }
 
-export function createTaskSucceeded(tasks) {
+export function createTaskSucceeded(task) {
   return {
     type: "CREATE_TASK_SUCCEEDED",
-    payload: tasks
+    payload: task,
+    meta: {
+      analytics: {
+        event: "create_task",
+        data: {
+          //id: task.id
+          task
+        }
+      }
+    }
   };
 }
 
@@ -44,7 +53,7 @@ export function editTask(id, params = {}) {
     api
       .editTask(id, updatedTask)
       .then(resp => {
-         setTimeout(() => dispatch(edit_task_succeeded(id, resp.data)), 400);
+        setTimeout(() => dispatch(edit_task_succeeded(id, resp.data)), 400);
         //throw new Error("editTask: An error occurred while editing task!");
       })
       .catch(err => {
