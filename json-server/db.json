@@ -1,13 +1,13 @@
 {
   "tasks": [
     {
-      "status": "Completed",
+      "status": "In Progress",
       "id": 1,
       "description": "Library for JS application state management",
       "title": "Learn Redux"
     },
     {
-      "status": "Unstarted",
+      "status": "Completed",
       "description": "Math programming",
       "title": "Learn Python",
       "id": 3
@@ -16,7 +16,7 @@
       "title": "Learn Haskell",
       "description": "Functional programming",
       "id": 2,
-      "status": "Unstarted"
+      "status": "In Progress"
     },
     {
       "title": "Learn Ramda",
