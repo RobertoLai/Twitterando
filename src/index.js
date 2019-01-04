@@ -8,11 +8,11 @@ import { tasksReducer, projectsReducer } from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import {
-  composeWithDevTools,
-  devToolsEnhancer
+  composeWithDevTools
+  // devToolsEnhancer
 } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-
+import logger from "./middleware/logger";
 const rootReducer = (state = {}, action) => {
   return {
     tasks: tasksReducer(state.tasks, action),
@@ -21,7 +21,7 @@ const rootReducer = (state = {}, action) => {
 };
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk, logger))
 );
 
 ReactDOM.render(

@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "status": "Completed",
+      "status": "Unstarted",
       "id": 1,
       "description": "Library for JS application state management",
       "title": "Learn Redux"

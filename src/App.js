@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import TasksPage from "./components/TasksPage";
-import FlashMessage from "./components/FlashMessage";
 import { createTask, editTask, fetchTasks } from "./actions";
 import { connect } from "react-redux";
 
@@ -31,7 +30,6 @@ class App extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state) {
   const { tasks, isLoading, error } = state.tasks;
