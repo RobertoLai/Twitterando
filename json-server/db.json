@@ -1,34 +1,32 @@
 {
   "tasks": [
     {
-      "status": "In Progress",
+      "status": "Unstarted",
       "id": 1,
       "description": "Library for JS application state management",
-      "title": "Learn Redux"
+      "title": "Learn Redux",
+      "timer": 2
     },
     {
       "status": "Completed",
       "description": "Math programming",
       "title": "Learn Python",
-      "id": 3
+      "id": 3,
+      "timer": 27
     },
     {
       "title": "Learn Haskell",
       "description": "Functional programming",
       "id": 2,
-      "status": "In Progress"
-    },
-    {
-      "title": "Learn Ramda",
-      "description": "Functional Javascript in JS like Haskell",
       "status": "Completed",
-      "id": 4
+      "timer": 27
     },
     {
-      "title": "Learn Rx",
-      "description": "Observables",
-      "status": "In Progress",
-      "id": 5
+      "title": "Learn RxJS",
+      "description": "Observable",
+      "status": "Unstarted",
+      "timer": 0,
+      "id": 4
     }
   ]
 }

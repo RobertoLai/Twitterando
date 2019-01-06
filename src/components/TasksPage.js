@@ -58,8 +58,8 @@ class TasksPage extends React.Component {
     return this.props.isLoading ? (
       <div className="tasks-loading">Loading....</div>
     ) : (
-      <div className="task-list">
-        <div className="task-list-header">
+      <div className="tasks">
+        <div className="tasks-header">
           <button className="button button-default" onClick={this.toggleForm}>
             + New task
           </button>

@@ -8,12 +8,7 @@ import { tasksReducer, projectsReducer } from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-
-import rootSaga from "./sagas";
-import createSagaMiddleware from "redux-saga";
 import thunk from "redux-thunk";
-
-const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = (state = {}, action) => {
   return {
@@ -23,10 +18,8 @@ const rootReducer = (state = {}, action) => {
 };
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk, sagaMiddleware))
+  composeWithDevTools(applyMiddleware(thunk))
 );
-
-sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

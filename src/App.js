@@ -17,14 +17,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="main-content">
-        <TasksPage
-          tasks={this.props.tasks}
-          onCreateTask={this.onCreateTask}
-          onUpdateTaskStatus={this.onUpdateTaskStatus}
-          isLoading={this.props.isLoading}
-          error={this.props.error}
-        />
+      <div className="container">
+        <div className="main-content">
+          <TasksPage
+            tasks={this.props.tasks}
+            onCreateTask={this.onCreateTask}
+            onUpdateTaskStatus={this.onUpdateTaskStatus}
+            isLoading={this.props.isLoading}
+            error={this.props.error}
+          />
+        </div>
       </div>
     );
   }

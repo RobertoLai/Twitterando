@@ -9,6 +9,26 @@ export function projectsReducer(state = initialState.projects, action) {
 
 export function tasksReducer(state = initialState.tasks, action) {
   switch (action.type) {
+    case "TIMER_INCREMENT": {
+      const editedTasks = state.tasks.map(task =>
+        task.id === action.payload.id
+          ? Object.assign({}, task, { timer: ++task.timer })
+          : task
+      );
+      return { ...state, tasks: editedTasks, isLoading: false };
+    }
+    case "TIMER_RESET": {
+    
+      const editedTasks = state.tasks.map(task =>
+        task.id === action.payload.id
+          ? Object.assign({}, task, {
+              timer: task.status === "Unstarted" ? 0 : task.timer
+            })
+          : task
+      );
+
+      return { ...state, tasks: editedTasks, isLoading: false };
+    }
     case "CREATE_TASK_STARTED": {
       return { ...state, isLoading: true };
     }
@@ -35,7 +55,7 @@ export function tasksReducer(state = initialState.tasks, action) {
       return { ...state, tasks: editedTasks, isLoading: false };
     }
     case "EDIT_TASK_FAILED": {
-      console.log("EDIT_TASK_FAILED",action.payload.error);
+      console.log("EDIT_TASK_FAILED", action.payload.error);
       return { ...state, isLoading: false, error: action.payload.error };
     }
 

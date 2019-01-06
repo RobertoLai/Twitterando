@@ -9,7 +9,7 @@ const Task = props => {
   return (
     <div className="task">
       <div className="task-header">{props.task.title}</div>
-      <select value={props.task.status} onChange={onUpdateTaskStatus}>
+    <select className="task-status" value={props.task.status} onChange={onUpdateTaskStatus}>
         {TASK_STATUSES.map(status => (
           <option value={status} key={status}>
             {status}
@@ -17,6 +17,7 @@ const Task = props => {
         ))}
       </select>
       <div className="task-body">{props.task.description}</div>
+    <div className="task-timer">{props.task.timer}s</div>
     </div>
   );
 };
