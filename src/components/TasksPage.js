@@ -1,7 +1,7 @@
 import React from "react";
 import TaskList from "./TaskList";
 import FlashMessage from "./FlashMessage";
-import { TASK_STATUSES } from "../constants";
+// import { TASK_STATUSES } from "../constants";
 
 class TasksPage extends React.Component {
   constructor(props) {
@@ -37,18 +37,21 @@ class TasksPage extends React.Component {
     });
     this.resetForm();
   };
-
+  onSearch = e => {
+    this.props.onSearch(e.target.value)
+  };
   renderTaskList() {
-    const { tasks } = this.props;
+    const { tasks, onUpdateTaskStatus } = this.props;
 
-    return TASK_STATUSES.map(status => {
-      const statusTasks = tasks.filter(task => task.status === status);
+    return Object.keys(tasks).map(status => {
+      // const statusTasks = tasks.filter(task => task.status === status);
+      const tasksByStatus=tasks[status]
       return (
         <TaskList
           key={status}
           status={status}
-          tasks={statusTasks}
-          onUpdateTaskStatus={this.props.onUpdateTaskStatus}
+          tasks={tasksByStatus}
+          onUpdateTaskStatus={onUpdateTaskStatus}
         />
       );
     });
@@ -60,6 +63,12 @@ class TasksPage extends React.Component {
     ) : (
       <div className="tasks">
         <div className="tasks-header">
+          <input
+            className="task-search"
+            type="text"
+            placeholder="search"
+            onChange={this.onSearch}
+          />
           <button className="button button-default" onClick={this.toggleForm}>
             + New task
           </button>

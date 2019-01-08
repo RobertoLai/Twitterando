@@ -60,11 +60,14 @@ export function editTask(id, params = {}) {
         setTimeout(
           () => {
             dispatch(edit_task_succeeded(id, resp.data));
-            if (resp.data.status === "In Progress" ) {
+            if (resp.data.status === "In Progress") {
               dispatch(progressTimerStart(id));
             }
 
-            if (task.status === "In Progress" || resp.data.status === "Unstarted" ) {
+            if (
+              task.status === "In Progress" ||
+              resp.data.status === "Unstarted"
+            ) {
               dispatch(progressTimerStop(id));
             }
           },
@@ -138,5 +141,12 @@ export function fetchTasksFailed(error) {
   return {
     type: "FETCH_TASKS_FAILED",
     payload: { error }
+  };
+}
+
+export function filterTasks(filter) {
+  return {
+    type: "FILTER_TASKS",
+    payload: { filter }
   };
 }

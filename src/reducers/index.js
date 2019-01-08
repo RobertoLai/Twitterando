@@ -1,6 +1,9 @@
+import { createSelector } from "reselect";
+import { TASK_STATUSES } from "../constants";
+
 const initialState = {
-  projects: { projects: [], isLoading: false, error: null },
-  tasks: { tasks: [], isLoading: false, error: null }
+  projects: { projects: [], isLoading: false, error: null, filter: "" },
+  tasks: { tasks: [], isLoading: false, error: null, filter: "" }
 };
 
 export function projectsReducer(state = initialState.projects, action) {
@@ -9,6 +12,9 @@ export function projectsReducer(state = initialState.projects, action) {
 
 export function tasksReducer(state = initialState.tasks, action) {
   switch (action.type) {
+    case "FILTER_TASKS": {
+      return { ...state, filter: action.payload.filter };
+    }
     case "TIMER_INCREMENT": {
       const editedTasks = state.tasks.map(task =>
         task.id === action.payload.id
@@ -18,7 +24,6 @@ export function tasksReducer(state = initialState.tasks, action) {
       return { ...state, tasks: editedTasks, isLoading: false };
     }
     case "TIMER_RESET": {
-    
       const editedTasks = state.tasks.map(task =>
         task.id === action.payload.id
           ? Object.assign({}, task, {
@@ -76,3 +81,26 @@ export function tasksReducer(state = initialState.tasks, action) {
 
   // return state;
 }
+
+//NB Selectors
+const getTasks = state => state.tasks.tasks;
+const getFilter = state => state.tasks.filter;
+// export function getFilteredState(tasks, filter) {
+//   return tasks.filter(task => task.title.match(new RegExp(filter, "i")));
+// }
+export const getFilteredTasks = createSelector(
+  [getTasks, getFilter],
+  (tasks, filter) =>
+    tasks.filter(task => task.title.match(new RegExp(filter, "i")))
+);
+
+export const getGroupedAndFilteredTasks = createSelector(
+  [getFilteredTasks],
+  tasks => {
+    const grouped = {};
+    TASK_STATUSES.forEach(status => {
+      grouped[status] = tasks.filter(task => task.status === status);
+    });
+    return grouped;
+  }
+);
