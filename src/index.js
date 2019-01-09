@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { tasksReducer, projectsReducer } from "./reducers";
+import { tasksReducer, projectsReducer, pageReducer } from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -18,7 +18,8 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = (state = {}, action) => {
   return {
     tasks: tasksReducer(state.tasks, action),
-    projects: projectsReducer(state.projects, action)
+    projects: projectsReducer(state.projects, action),
+    page:pageReducer(state.page ,action)
   };
 };
 const store = createStore(

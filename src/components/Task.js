@@ -3,7 +3,7 @@ import { TASK_STATUSES } from "../constants";
 
 const Task = props => {
   const onUpdateTaskStatus = e =>
-    props.onUpdateTaskStatus(props.task.id, e.target.value);
+    props.onUpdateTaskStatus(props.task, e.target.value);
 
 
   return (

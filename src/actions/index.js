@@ -1,11 +1,25 @@
 import * as api from "../api";
+import { normalize, schema } from "normalizr";
 
-export function createTask(title, description) {
+const taskSchema = new schema.Entity("tasks");
+const projectSchema = new schema.Entity("projects", { tasks: [taskSchema] });
+
+function receivedEntities(entities) {
+  return { type: "RECEIVED_ENTITIES", payload: entities };
+}
+
+export function createTask(title, description, projectId) {
   return dispatch => {
     dispatch(createTaskStarted());
 
     api
-      .createTask({ title, description, status: "Unstarted", timer: 0 })
+      .createTask({
+        title,
+        description,
+        status: "Unstarted",
+        timer: 0,
+        projectId
+      })
       .then(resp => {
         setTimeout(() => dispatch(createTaskSucceeded(resp.data)), 400);
         // throw new Error("createTask: error while creating the new task");
@@ -49,26 +63,26 @@ function progressTimerStop(id) {
   };
 }
 
-export function editTask(id, params = {}) {
+export function editTask(task, params = {}) {
   return (dispatch, getState) => {
-    const task = getTaskById(getState().tasks.tasks, id);
+
     const updatedTask = Object.assign({}, task, params);
     dispatch(editTaskStarted());
     api
-      .editTask(id, updatedTask)
+      .editTask(task.id, updatedTask)
       .then(resp => {
         setTimeout(
           () => {
-            dispatch(edit_task_succeeded(id, resp.data));
+            dispatch(edit_task_succeeded(task.id, resp.data));
             if (resp.data.status === "In Progress") {
-              dispatch(progressTimerStart(id));
+              dispatch(progressTimerStart(task.id));
             }
 
             if (
               task.status === "In Progress" ||
               resp.data.status === "Unstarted"
             ) {
-              dispatch(progressTimerStop(id));
+              dispatch(progressTimerStop(task.id));
             }
           },
 
@@ -101,9 +115,10 @@ export function editTaskFailed(error) {
   };
 }
 
-function getTaskById(tasks, id) {
-  return tasks.find(task => task.id === id);
-}
+// function getTaskById(tasks, id) {
+//    return tasks.find(task => task.id === id);
+//   return tasks[id];
+// }
 
 export function fetchTasksStarted() {
   return {
@@ -141,6 +156,56 @@ export function fetchTasksFailed(error) {
   return {
     type: "FETCH_TASKS_FAILED",
     payload: { error }
+  };
+}
+
+
+
+export function fetchProjects() {
+  return (dispatch, getState) => {
+    dispatch(fetchProjectsStarted());
+    api
+      .fetchProjects()
+      .then(resp => {
+        const projects = resp.data;
+        const normalizedData = normalize(projects, [projectSchema]);
+
+        setTimeout(() => dispatch(receivedEntities(normalizedData)), 600);
+        if (!getState().page.currentProjectId) {
+          const defaultProjectId = projects[0].id;
+          dispatch(setCurrentProjectId(defaultProjectId));
+        }
+
+        // throw new Error("fetchTasks: An error occurred while fetching!");
+      })
+      .catch(err => {
+        dispatch(fetchProjectsFailed(err.message));
+      });
+  };
+}
+export function fetchProjectsStarted(boards) {
+  return {
+    type: "FETCH_PROJECTS_STARTED",
+    payload: { boards }
+  };
+}
+export function fetchProjectsSucceeded(projects) {
+  return {
+    type: "FETCH_PROJECTS_SUCCEEDED",
+    payload: { projects }
+  };
+}
+export function fetchProjectsFailed(error) {
+  return {
+    type: "FETCH_PROJECTS_FAILED",
+    payload: { error }
+  };
+}
+
+export function setCurrentProjectId(id) {
+  return {
+    type: "SET_CURRENT_PROJECT_ID",
+    payload: { id }
   };
 }
 

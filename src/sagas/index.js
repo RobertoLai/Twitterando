@@ -4,7 +4,7 @@ import {
   call,
   take,
   put,
-  takeLatest,
+  takeLatest
   // takeEvery
 } from "redux-saga/effects";
 import * as api from "../api";
@@ -52,23 +52,6 @@ function* handleProgressTimer({ payload, type }) {
     });
   }
 }
-// function* handleProgressTimer({ payload }) {
-//   console.log("handleProgressTimer");
-//   while (true) {
-//     yield call(delay, 1000);
-//     yield put({
-//       type: "TIMER_INCREMENT",
-//       payload: { id: payload.id }
-//     });
-//   }
-// }
-//
-// function* handleProgressTimerStop({ payload }) {
-//   yield put({
-//     type: "TIMER_RESET",
-//     payload: { id: payload.id }
-//   });
-// }
 
 function* fetchTasks() {
   try {
@@ -84,26 +67,3 @@ function* fetchTasks() {
     });
   }
 }
-
-// function* watchFetchTasks() {
-//   while (true) {
-//     yield take("FETCH_TASKS_STARTED");
-//
-//     try {
-//       const { data } = yield call(api.fetchTasks);
-//       yield put({
-//         type: "FETCH_TASKS_SUCCEEDED",
-//         payload: { tasks: data }
-//       });
-//     } catch (e) {
-//       yield put({
-//         type: "FETCH_TASKS_FAILED",
-//         payload: { error: e.message }
-//       });
-//     }
-//     console.log("started!");
-//   }
-// }
-// function* watchSomethingElse() {
-//   console.log("watching something else!");
-// }

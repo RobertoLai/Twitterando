@@ -38,14 +38,13 @@ class TasksPage extends React.Component {
     this.resetForm();
   };
   onSearch = e => {
-    this.props.onSearch(e.target.value)
+    this.props.onSearch(e.target.value);
   };
   renderTaskList() {
     const { tasks, onUpdateTaskStatus } = this.props;
-
     return Object.keys(tasks).map(status => {
       // const statusTasks = tasks.filter(task => task.status === status);
-      const tasksByStatus=tasks[status]
+      const tasksByStatus = tasks[status];
       return (
         <TaskList
           key={status}
@@ -58,6 +57,7 @@ class TasksPage extends React.Component {
   }
 
   render() {
+
     return this.props.isLoading ? (
       <div className="tasks-loading">Loading....</div>
     ) : (
@@ -90,6 +90,7 @@ class TasksPage extends React.Component {
               placeholder="description"
               value={this.state.description}
             />
+
             <button className="button" type="submit">
               Save
             </button>

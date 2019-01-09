@@ -102,6 +102,7 @@ hr {
   height: 24px;
   font-size: 12px;
 }
+
 .task-status {
   padding: 2px 10px;
   margin-left: 60%;
@@ -144,4 +145,16 @@ hr {
   background: #f2dede;
   border-color: #ebcccc;
   color: #a94442;
+}
+
+.projects-item {
+  padding: 4px 10px;
+  margin-bottom:10px;
+  xmargin-left: 60%;
+  border: 2px solid #79d97a;
+  height: 28px;
+  font-size: 14px;
+  display: flex;
+  xjustify-content: space-between;
+  align-items: left;
 }
