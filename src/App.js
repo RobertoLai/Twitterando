@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { getGroupedAndFilteredTasks, getPage, getProjects } from "./reducers";
 // import { getFilteredTasks } from "./reducers";
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     // this.props.dispatch(fetchTasks());
     this.props.dispatch(fetchProjects());

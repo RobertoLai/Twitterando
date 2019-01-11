@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#TaskList component #snapshot: should match the last snapshot 1`] = `
+<div
+  className="task-list"
+>
+  <div
+    className="task-list-title"
+  >
+    <strong>
+      In Progress
+    </strong>
+  </div>
+</div>
+`;
+
+exports[`#TaskList component #snapshot: should match the last snapshot with 3 tasks 1`] = `
+<div
+  className="task-list"
+>
+  <div
+    className="task-list-title"
+  >
+    <strong>
+      Unstarted
+    </strong>
+  </div>
+  <Task
+    key="1"
+    task={
+      Object {
+        "description": "descr 1",
+        "id": 1,
+        "status": "Unstarted",
+        "timer": "0",
+        "title": "task 1",
+      }
+    }
+  />
+  <Task
+    key="2"
+    task={
+      Object {
+        "description": "descr 2",
+        "id": 2,
+        "status": "Unstarted",
+        "timer": "0",
+        "title": "task 2",
+      }
+    }
+  />
+  <Task
+    key="3"
+    task={
+      Object {
+        "description": "descr 3",
+        "id": 3,
+        "status": "Unstarted",
+        "timer": "0",
+        "title": "task 3",
+      }
+    }
+  />
+</div>
+`;

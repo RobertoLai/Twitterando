@@ -53,6 +53,7 @@ function* handleProgressTimer({ payload, type }) {
   }
 }
 
+
 function* fetchTasks() {
   try {
     const { data } = yield call(api.fetchTasks);
